@@ -15,9 +15,9 @@ class follow {
         int unique_users(ifstream& gfile);//counnt of all unique users.
         void most_followers(); //prints who has most followers and how many
     private:
-        vector<string> user_list;
-        map<string, vector<string>> follow_map;
-        map<string, int> followers;
+        vector<string> user_list; //simple vector of users
+        map<string, vector<string>> follow_map; //map of users (key) and a vector of people people they follow (values)
+        map<string, int> followers; //map of users (key) and the amount of people following them (values)
 //follows is considered a member variable
 };
 
@@ -37,7 +37,6 @@ follow::follow (ifstream& gfile)
 //Then, it will initally another while loop that stops when it detects a line that isn't a username.
 
     string colon = ":";
-    //char a[50], b[50], c[50];
     string a, b, c;
     while ( gfile >> a )
     {
@@ -64,15 +63,12 @@ follow::follow (ifstream& gfile)
 
 }
 
-
 //instead of counting the number of special users, count the
 
 void follow::follows(string s)
 {
-
     for (auto &n: follow_map[s])
         cout << n << endl;
-
 }
 
 int follow::unique_users(ifstream& gfile)
@@ -96,7 +92,6 @@ int follow::unique_users(ifstream& gfile)
         if (duplicate == false && a != ":")
             user_list.push_back(a);
     }
-
     //return count - 1 because one of them are colons
     return user_list.size();
 }
